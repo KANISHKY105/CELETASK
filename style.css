@@ -1,0 +1,27 @@
+#card {
+    width: 100%; 
+    max-width: 400px; 
+    aspect-ratio: 9 / 16; 
+  }
+
+  #card img {
+    width: 350px; 
+    height: 620px; 
+    object-fit:fill; 
+    object-position: center;
+    border: 10px solid;
+    border-color: rgb(143, 122, 96);
+    margin: 20px 10px;
+  }
+
+.btn {
+    font-size: inherit; 
+    font-weight: inherit; 
+    border: 2px solid #000; 
+    background-color: #f0f0f0; 
+    color: #000; 
+    /* padding: 10px 20px;  */
+    cursor: pointer; 
+    border-radius: 5px;
+    margin: 20px 10px;
+}
