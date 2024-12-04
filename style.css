@@ -1,27 +1,106 @@
 #card {
-    width: 100%; 
-    max-width: 400px; 
-    aspect-ratio: 9 / 16; 
-  }
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 9 / 16;
+}
 
-  #card img {
-    width: 350px; 
-    height: 620px; 
-    object-fit:fill; 
-    object-position: center;
-    border: 10px solid;
-    border-color: rgb(143, 122, 96);
-    margin: 20px 10px;
-  }
+#card img {
+  width: 350px;
+  height: 620px;
+  object-fit: fill;
+  object-position: center;
+  border: 10px solid;
+  border-color: rgb(175, 159, 139);
+  margin: 20px 10px;
+}
 
 .btn {
-    font-size: inherit; 
-    font-weight: inherit; 
-    border: 2px solid #000; 
-    background-color: #f0f0f0; 
-    color: #000; 
-    /* padding: 10px 20px;  */
-    cursor: pointer; 
-    border-radius: 5px;
-    margin: 20px 10px;
+  font-size: inherit;
+  font-weight: inherit;
+  border: 2px solid #fff;
+  background-color: #f0f0f0;
+  color: #000;
+  /* padding: 10px 20px;  */
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 20px 10px;
+}
+
+table {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+input[type="text"],
+textarea,
+select,
+input[type="color"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.btn {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.font-select,
+.size-select {
+  font-size: 14px;
+}
+
+input[type="color"] {
+  width: 60px;
+  height: 30px;
+  padding: 0;
+  border: none;
+}
+
+#color1 {
+  padding: 0;
+  border: 2px solid #040404;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+#color1::-webkit-color-swatch {
+  border: none;
+  border-radius: 100%;
 }

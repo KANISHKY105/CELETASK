@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div style="display: flex; justify-content: space-around; align-items: center;">
+    <div style="display: flex; justify-content: space-around; align-items: center; margin-left: 150px;">
         <div>
             <div style="display: flex; align-items: center;">
                 <div>
@@ -27,7 +27,52 @@
         <div>
             <h1>EDIT MENU</h1>
             <div style="display: flex;">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><textarea rows="3" cols="30">Editable Text</textarea></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="font-family">Font Family:</label>
+                                <select id="font-family" name="font-family" class="font-select">
+                                    <option value="Arial">Arial</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Courier New">Courier New</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                </select>
+                            </td>
+                        </tr>
 
+                        <tr>
+                            <td>
+                                <label for="size">Choose Size:</label>
+                                <select id="size" name="size" class="size-select">
+                                    <option value="12">12px</option>
+                                    <option value="14">14px</option>
+                                    <option value="16">16px</option>
+                                    <option value="18">18px</option>
+                                    <option value="20">20px</option>
+                                    <option value="24">24px</option>
+                                    <option value="28">28px</option>
+                                    <option value="32">32px</option>
+                                    <option value="36">36px</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label for="color">Choose Color:</label>
+                                <input id="color1" type="color" id="color" name="color" class="color-picker"
+                                    value="#000000">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="btn">Add Text Box</button></td>
+                            <td><button class="btn">Add Image</button></td>
+                        </tr>
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
