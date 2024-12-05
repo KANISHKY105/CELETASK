@@ -56,6 +56,7 @@ input[type="color"] {
 }
 
 textarea {
+  min-height: fit-content;
   resize: vertical;
 }
 
@@ -103,4 +104,42 @@ input[type="color"] {
 #color1::-webkit-color-swatch {
   border: none;
   border-radius: 100%;
+}
+
+
+.draggable-textbox {
+  min-width: 100px; /* Minimum width */
+  max-width: 300px; /* Maximum width */
+  height: auto; /* Allow height to adjust automatically */
+  font-size: 16px;
+  padding: 5px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  cursor: move;
+  transition: background-color 0.3s ease, width 0.2s ease, height 0.2s ease;
+  overflow-wrap: break-word; /* Allow text to wrap */
+  word-wrap: break-word; /* Compatibility with older browsers */
+  white-space: normal; /* Allow wrapping of text */
+}
+
+
+.draggable-textbox:hover {
+  background-color: #e9ecef; 
+}
+
+.draggable-textbox:focus {
+  border-color: #111418; 
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); 
+  outline:#000; 
+}
+
+.dragging {
+  cursor: crosshair; 
+}
+
+body {
+  margin: 20px;
 }

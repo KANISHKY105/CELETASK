@@ -1,10 +1,11 @@
 class Slide {
     static instanceCount = 0;
 
-    constructor(imagePath) {
+    constructor(imagePath, element) {
         this.background = imagePath;
         Slide.instanceCount += 1;
         this.textBoxes = [];
+        this.textBoxes.push(element);
     }
 
     createElementFromSlide() {
@@ -14,18 +15,17 @@ class Slide {
         return element;
     }
 
-    // printAllTextBoxes() {
-    //     this.textBoxes.forEach((textBox, index) => {
-    //         console.log(`TextBox ${index + 1}:`, textBox.value);  
-    //         console.log(`TextBox ${index + 1}:`, textBox);
-    //     });
-    // }
+    printAllTextBoxes() {
+        this.textBoxes.forEach((textBox, index) => {
+            console.log(`TextBox ${index + 1}:`, textBox.value);
+            console.log(`TextBox ${index + 1}:`, textBox);
+        });
+    }
 }
-
 
 class DraggableTextBox {
     static textboxcount = 0;
-    constructor({ id, className, font, color, size, width, height, placeholder, textvalue }) {
+    constructor({ id, className, font, color, size, width, height, placeholder, textvalue, activitystatus}) {
         DraggableTextBox.textboxcount += 1;
         this.id = id || DraggableTextBox.textboxcount;
         this.className = className || 'draggable-textbox';
@@ -37,20 +37,20 @@ class DraggableTextBox {
         this.draggable = true;
         this.placeholder = placeholder || `Textbox ${this.id}`;
         this.textvalue = textvalue || 'T BOX';
+        this.activitystatus = false;
+
     }
 
-
-
-
     createElement() {
-        const textbox = document.createElement('input');
-        textbox.type = 'text';
+        const textbox = document.createElement('textarea');
+        // textbox.type = 'text';
         textbox.id = this.id;
         textbox.className = this.className;
         textbox.placeholder = this.placeholder;
         textbox.style.left = '400px';
         textbox.style.top = '400px';
         textbox.value = this.textvalue;
+        textbox.activitystatus = false
 
         // Apply styles
         textbox.style.fontFamily = this.font;
@@ -63,19 +63,47 @@ class DraggableTextBox {
         textbox.addEventListener('input', (event) => {
             this.textvalue = event.target.value;
         });
+        textbox.addEventListener('focus', function (event) {
+            const tb = document.getElementById("area1");
+            tb.innerText = textbox.value
+        });
+
 
         var initialMousePos = { x: 0, y: 0 };
         var initialTextBoxPos = { x: 0, y: 0 };
         var isDragging = false;
         var activeTextBox = null;
 
+        function deselectAllTextBoxes() {
+            // Before updating the activitystatus
+            // console.log("Before deselecting:");
+            // document.querySelectorAll('.draggable-textbox').forEach(ele => {
+            //     console.log(`Textbox ID: ${ele.id}, Activity Status: ${ele.activitystatus}`);
+            // });
+        
+            // Update the activitystatus
+            document.querySelectorAll('.draggable-textbox').forEach(ele => {
+                ele.activitystatus = false;
+            });
+        
+            // After updating the activitystatus
+            // console.log("After deselecting:");
+            // document.querySelectorAll('.draggable-textbox').forEach(ele => {
+            //     console.log(`Textbox ID: ${ele.id}, Activity Status: ${ele.activitystatus}`);
+            // });
+        }
+
+
         textbox.addEventListener('mousedown', function (e) {
+            deselectAllTextBoxes();
+
             initialMousePos.x = e.clientX;
             initialMousePos.y = e.clientY;
             initialTextBoxPos.x = parseInt(this.style.left, 10);
             initialTextBoxPos.y = parseInt(this.style.top, 10);
             isDragging = true;
             activeTextBox = this;
+            this.activitystatus = true;
         });
 
         document.addEventListener('mouseup', function () {
@@ -91,25 +119,54 @@ class DraggableTextBox {
             }
         });
 
+        document.getElementById('size').addEventListener('input', function () {
+            if (activeTextBox && activeTextBox.activitystatus === true) {
+                console.log(this.value);
+                activeTextBox.style.fontSize = this.value + 'px';
+            }
+        });
+        
+
+        document.getElementById('color1').addEventListener('input', function () {
+            if (activeTextBox && activeTextBox.activitystatus === true) {
+                console.log(this.value)
+                activeTextBox.style.color = this.value;
+            }
+        });
+
+        document.getElementById('txtfont').addEventListener('input', function () {
+            if (activeTextBox && activeTextBox.activitystatus === true) {
+                console.log(this.value)
+                activeTextBox.style.fontFamily = this.value;
+            }
+        });
+
         return textbox;
     }
 }
 
-const textbox1 = new DraggableTextBox({ color: '#ff0000', placeholder: 'First textbox' });
 
 
+const textbox1 = new DraggableTextBox({ color: '#ff0000', placeholder: 'First textbox', textvalue: "The Great Wall of China" });
+const textbox2 = new DraggableTextBox({ color: '#ff0000', placeholder: 'First textbox', textvalue: "Christ the Redeemer" });
+const textbox3 = new DraggableTextBox({ color: '#ff0000', placeholder: 'First textbox', textvalue: "The Taj Mahal" });
 
-var slide1 = new Slide("public/photo1.jpg");
-var slide2 = new Slide("public/photo2.jpg");
-var slide3 = new Slide("public/photo3.jpg");
+const ele1 = textbox1.createElement();
+const ele2 = textbox2.createElement();
+const ele3 = textbox3.createElement();
+
+var slide1 = new Slide("public/photo1.jpg", ele1);
+var slide2 = new Slide("public/photo2.jpg", ele2);
+var slide3 = new Slide("public/photo3.jpg", ele3);
 
 var slidesArray = [slide1, slide2, slide3];
 currentSlide = 0;
 var n = slidesArray.length;
 
-console.log(slide1.background)
-console.log(slide2.background)
-console.log(slide3.background)
+const start = document.getElementById('card');
+setTimeout(() => {
+    start.append(slide1.textBoxes[0]);
+}, 500);
 
 const slideObject = `<div><img src="${slidesArray[0].background}" /> </div>`
 var currentSlide = 0
@@ -148,6 +205,7 @@ nextButton.addEventListener('click', function () {
     textBoxes.forEach((textBox, index) => {
         card.append(textBox);
     });
+    slidesArray[currentSlide].printAllTextBoxes();
 });
 
 
@@ -172,4 +230,8 @@ prevButton.addEventListener('click', function () {
     textBoxes.forEach((textBox, index) => {
         card.append(textBox);
     });
+    slidesArray[currentSlide].printAllTextBoxes();
+
+    // console.log(slidesArray[currentSlide].textBoxes[0])
+
 });
