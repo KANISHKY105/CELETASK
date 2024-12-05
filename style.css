@@ -11,7 +11,8 @@
   object-position: center;
   border: 10px solid;
   border-color: rgb(175, 159, 139);
-  margin: 20px 10px;
+  /* margin: 20px 10px; */
+  /* padding: 20px; */
 }
 
 .btn {
@@ -108,26 +109,28 @@ input[type="color"] {
 
 
 .draggable-textbox {
-  min-width: 100px; /* Minimum width */
-  max-width: 300px; /* Maximum width */
-  height: auto; /* Allow height to adjust automatically */
+  text-align: center;
+  width: auto; 
+  height:fit-content;
   font-size: 16px;
   padding: 5px;
-  border: 2px solid #ccc;
+  border: 2px solid #cccccc00;
   border-radius: 5px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fbf5f500;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
   position: absolute;
   cursor: move;
-  transition: background-color 0.3s ease, width 0.2s ease, height 0.2s ease;
-  overflow-wrap: break-word; /* Allow text to wrap */
-  word-wrap: break-word; /* Compatibility with older browsers */
-  white-space: normal; /* Allow wrapping of text */
+  transition: background-color 1s ease;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+  resize: none;
+  overflow: hidden;
 }
 
 
 .draggable-textbox:hover {
-  background-color: #e9ecef; 
+  background-color: #e5e6e897; 
 }
 
 .draggable-textbox:focus {
